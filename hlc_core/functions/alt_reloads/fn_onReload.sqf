@@ -45,6 +45,10 @@ if !(isClass (configFile >> "CfgWeapons" >> _weapon >> "NIArms_Alt_Reloads")) ex
 if (_fakeWeapon == _weapon) exitwith {};
 
 NIArms_altReloads_isReloading = true;
+if (!isNil "_newMagazine" &&  {_newMagazine isEqualType []}) then
+{
+  _unit playactionNow "GestureEmpty"; // Break the animation.
+};
 private _magazinesOfWeaponType = getArray(configFile >> "CfgWeapons" >> _weapon >> "magazines");
 
 
