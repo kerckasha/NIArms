@@ -37,3 +37,17 @@ class LIB_LeeEnfield_No4_altReload1: LIB_LeeEnfield_No4
   reloadMagazineSound[] = {"\WW2\Assets_s\Weapons\Rifles_s\BoltAction\Reload_sniper.wss",1,1,10};
 };
 ```
+
+In 191 Bohemia have added reload and reloaded eventhandlers to weapons, the script supports this and its highly recommended you add the 'reload' handler as the script will automatically disable the 'old' PerFrame method and opt to use the reload handler instead if the function is available. To do this simply add the eventhandler as follows:
+```cpp
+class LIB_LeeEnfield_No4: LIB_RIFLE
+{
+  class Eventhandlers: Eventhandlers
+  {
+    class NIArms_Alt_Reloads
+    {
+      reload = "_this call NIArms_altReloads_fnc_onReload";
+    };
+  };
+};
+```
