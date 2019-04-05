@@ -69,9 +69,9 @@ if (!isNil "NIArms_altReloads_tempReloadWeapon" &&  {((_weapon) == NIArms_altRel
 	_unit selectWeapon NIArms_altReloads_previousWeapon;
 	_unit setammo [NIArms_altReloads_previousWeapon,_ammo];
 	_unit addmagazine [_tempMag,_tempAmmo];
+	[_unit, WW2_altReloads_previousWeapon, (_unit getVariable ["WW2_altReloads_lastfireMode",""])] call CBA_fnc_selectWeapon;
 	NIArms_altReloads_isReloading = false;
 	NIArms_altReloads_tempReloadWeapon = nil;
 	NIArms_altReloads_previousWeapon = nil;
-	[_unit, NIArms_altReloads_previousWeapon, (_unit getVariable ["NIArms_altReloads_lastfireMode",""])] call CBA_fnc_selectWeapon;
 };
 NIArms_altReloads_isReloading = false;
