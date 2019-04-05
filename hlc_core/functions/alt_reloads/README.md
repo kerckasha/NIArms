@@ -51,3 +51,15 @@ class LIB_LeeEnfield_No4: LIB_RIFLE
   };
 };
 ```
+A Reloaded handler is also needed, it can be set either in the weapon (post 191) or on the unit itself. Example:
+```cpp
+class CAManBase: Man
+{
+  class EventHandlers: EventHandlers
+  {
+    class NIArms_altReloads
+    {
+      Reloaded = "_this call NIArms_altReloads_fnc_afterReload";
+    };
+};
+```
