@@ -31,7 +31,7 @@ else
 private _conditionAmmo = _oldAmmo;
 if (!isNil "_newMagazine" &&  {_newMagazine isEqualType []}) then
 {
-  if ((getText (configFile >> "CfgMagazines" >> _oldMag >> "ammo")) != (getText (configFile >> "CfgMagazines" >> (_newMagazine select 0) >> "ammo"))) exitwith {_conditionAmmo = (getNumber (configFile >> "CfgMagazines" >> _oldMag >> "count"));};
+  if (_oldAmmo > 0 && {(getText (configFile >> "CfgMagazines" >> _oldMag >> "ammo")) != (getText (configFile >> "CfgMagazines" >> (_newMagazine select 0) >> "ammo"))}) then {_conditionAmmo = (getNumber (configFile >> "CfgMagazines" >> _oldMag >> "count"));};
 }; //Switching ammo type, do full reload, might want to change this depending on magazine type/weapon
 
 private _fakeWeapon = _weapon;
