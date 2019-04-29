@@ -15,7 +15,9 @@
 */
 params [["_unit",(player)], ["_weapon",(currentWeapon player)], ["_muzzle",(currentMuzzle player)], "_newMagazine", ["_oldMagazine",(currentMagazine player)]];
 private ["_oldAmmo","_oldMag"];
-if (NIArms_altReloads_isReloading) exitwith {};
+
+if (_unit getvariable ["NIArms_altReloads_disabled",false]) exitwith {};
+if (_unit getvariable ["NIArms_altReloads_isReloading",false]) exitwith {};
 if (_oldMagazine isEqualType []) then
 {
   _oldMag = _oldMagazine select 0;
@@ -44,7 +46,7 @@ if !(isClass (configFile >> "CfgWeapons" >> _weapon >> "NIArms_Alt_Reloads")) ex
 
 if (_fakeWeapon == _weapon) exitwith {};
 
-NIArms_altReloads_isReloading = true;
+_unit setvariable ["NIArms_altReloads_isReloading",true];
 if (!isNil "_newMagazine" &&  {_newMagazine isEqualType []}) then
 {
   _unit playactionNow "GestureEmpty"; // Break the animation.
@@ -106,9 +108,8 @@ private _id = parseNumber(_string select 4);
 private _creator = parseNumber(_string select 5);
 _unit action ["loadmagazine",_unit, _unit, _creator, _id ,_fakeWeapon, _fakeWeapon];
 
-NIArms_altReloads_tempReloadWeapon = _fakeWeapon;
-NIArms_altReloads_previousWeapon = _weapon;
-
+_unit setvariable ["NIArms_altReloads_tempReloadWeapon",_fakeWeapon];
+_unit setvariable ["NIArms_altReloads_previousWeapon",_weapon];
 
 private "_container";
 {

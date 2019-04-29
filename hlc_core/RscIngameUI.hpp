@@ -2,7 +2,7 @@ class RscInGameUI
 {
   class RscUnitInfoSoldier;
   class RscWeaponZeroing;
-
+  //not needed anymore, leaving for the sake of compability.
   class Niarms_Rsc_AltReload_Zeroing: RscWeaponZeroing
   {
     idd = 9640;
