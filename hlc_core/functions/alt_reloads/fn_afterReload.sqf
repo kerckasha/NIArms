@@ -26,7 +26,7 @@ params [
 	"_weapon",
 	"",
 	"_newMagazine",
-	""
+	"_oldMagazine"
 ];
 if (_unit getvariable ["NIArms_altReloads_disabled",false]) exitwith {};
 private _tempReloadWeapon = _unit getvariable ["NIArms_altReloads_tempReloadWeapon",nil];
@@ -35,8 +35,12 @@ private _previousWeapon = _unit getvariable ["NIArms_altReloads_previousWeapon",
 
 if (!isNil "_tempReloadWeapon" &&  {((_weapon) == _tempReloadWeapon)}) then
 {
+	_oldMagazine params ["_oldmag","_oldammo"];
 	_newMagazine params ["_mag","_ammo"];
 	private _attachments = [_unit,_tempReloadWeapon] call NIArms_altReloads_fnc_getAttachments;
+	_unit setvariable ["NIArms_altReloads_tempReloadWeapon",nil];
+	_unit setvariable ["NIArms_altReloads_previousWeapon",nil];
+	_unit addmagazine [_oldMag,_oldammo];
 	_unit removeWeapon _weapon;
 	private ["_tempMag","_tempAmmo"];
 	_unit addWeapon _previousWeapon;
@@ -75,7 +79,6 @@ if (!isNil "_tempReloadWeapon" &&  {((_weapon) == _tempReloadWeapon)}) then
 	_unit addmagazine [_tempMag,_tempAmmo];
 	[_unit, _previousWeapon, (_unit getVariable ["NIArms_altReloads_lastfireMode",""])] call CBA_fnc_selectWeapon;
 	_unit setvariable ["NIArms_altReloads_isReloading",false];
-	_unit setvariable ["NIArms_altReloads_tempReloadWeapon",nil];
-	_unit setvariable ["NIArms_altReloads_previousWeapon",nil];
+
 };
 _unit setvariable ["NIArms_altReloads_isReloading",false];
