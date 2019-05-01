@@ -6,7 +6,6 @@ Once this is done you set up class names for them as you would any other weapon 
 
 Inside the 'real' weapon config you need to define some classes, example:
 ```cpp
-weaponInfoType = "Niarms_Rsc_AltReload_Zeroing"; //This needs to be set in the main weapon, it runs the per frame handler and stops it when its not needed.
 class NIArms_Alt_Reloads //The main class, without this it won't work
 {
   class LIB_LeeEnfield_No4 //A weapon class name, the class name to be used if the condition below is true
@@ -47,6 +46,7 @@ class LIB_LeeEnfield_No4: LIB_RIFLE
     class NIArms_Alt_Reloads
     {
       reload = "_this call NIArms_altReloads_fnc_onReload";
+	  Reloaded = "_this call NIArms_altReloads_fnc_afterReload";
     };
   };
 };
